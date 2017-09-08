@@ -16,8 +16,7 @@ class Plane: SCNNode {
     override init() {
         let geo = SCNPlane(width: 3, height: 2)
         plane = SCNNode(geometry: geo)
-        plane.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
-        
+        plane.eulerAngles = SCNVector3(-Double.pi/2, 0, 0)
         super.init()
         
         self.addChildNode(plane)

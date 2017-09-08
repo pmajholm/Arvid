@@ -41,7 +41,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // FocusSquare
         setupFocusSquare()
- focusSquare?.unhide()
+        focusSquare?.unhide()
         DispatchQueue.main.async {
             self.screenCenter = self.sceneView.bounds.mid
         }
