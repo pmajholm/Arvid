@@ -84,15 +84,18 @@ class World: SCNNode, GameEngineDelegate {
     }
     
     func addTower(selectionName: String) {
-        let tower = TowerNode(world: self)
-        tower.position = getPositionFrom(name: selectionName)!
-//        tower.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
-        self.updatables.append(tower)
-        addChildNode(tower)
+        if let towerModel = GameEngine.sharedInstance.buyTower(level: 1){
+            let tower = TowerNode(world: self, tower: towerModel)
+            tower.position = getPositionFrom(name: selectionName)!
+            //        tower.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
+            self.updatables.append(tower)
+            addChildNode(tower)
+        }
+        
     }
     
-    func spawnCreep() {
-        let creepNode = CreepNode()
+    func spawnCreep(creep: Creep) {
+        let creepNode = CreepNode(creep: creep)
         creepNode.position = SCNVector3(-planeWidth, Float(creepNode.radius()) / 2, 0) //TODO: set position
         creepNode.name = "something" //TODO: set name
         creeps.append(creepNode)
@@ -104,7 +107,7 @@ class World: SCNNode, GameEngineDelegate {
     
     func sendCreep(creep: Creep) {
         //Create and send creep on plane
-        spawnCreep()
+        spawnCreep(creep: creep)
         print("Sending creep of level: \(String(creep.level))")
     }
     
