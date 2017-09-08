@@ -13,9 +13,11 @@ class SeekingEnergyBall: SCNNode, Updatable {
     
     let target: SCNNode
     let speed = 0.1
+    var attackPoint: Int!
     
-    init(target: SCNNode) {
+    init(target: SCNNode, attackPoint: Int) {
         self.target = target
+        self.attackPoint = attackPoint
         super.init()
         let geo = SCNSphere(radius: 0.01)
         geometry = geo

@@ -57,7 +57,7 @@ class TowerNode : SCNNode, Updatable {
         
         if i % 30 == 0 {
             for creep in world.creeps {
-                let ball = SeekingEnergyBall(target: creep)
+                let ball = SeekingEnergyBall(target: creep, attackPoint: self.tower.attackPoints)
                 ball.worldPosition = muzzle.worldPosition
                 world.updatables.append(ball)
                 world.plane.addChildNode(ball)
