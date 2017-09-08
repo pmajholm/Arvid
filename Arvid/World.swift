@@ -103,5 +103,13 @@ class World: SCNNode, GameEngineDelegate {
     func sendCreep(creep: Creep) {
         //Create and send creep on plane
     }
+    
+    func gameDidPause() {
+        //Pause all nodes in their actions
+    }
+    
+    func gameDidResume() {
+        //Resume all nodes in their actions
+    }
 
 }
