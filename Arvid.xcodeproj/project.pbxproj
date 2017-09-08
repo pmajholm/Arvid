@@ -14,7 +14,7 @@
 		1A6402201F62868000FEE3E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A64021F1F62868000FEE3E0 /* Assets.xcassets */; };
 		1A6402231F62868000FEE3E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */; };
 		1A64022E1F62868000FEE3E0 /* ArvidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64022D1F62868000FEE3E0 /* ArvidTests.swift */; };
-		1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* Plane.swift */; };
+		1A6402391F62888D00FEE3E0 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* World.swift */; };
 		1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023A1F628BED00FEE3E0 /* Utilities.swift */; };
 		1AB7980A1F62B35B00D21E3E /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB798091F62B35B00D21E3E /* Updatable.swift */; };
 		1AB7980E1F62B9F800D21E3E /* SeekingEnergyBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB7980D1F62B9F800D21E3E /* SeekingEnergyBall.swift */; };
@@ -48,7 +48,7 @@
 		1A6402291F62868000FEE3E0 /* ArvidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArvidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A64022D1F62868000FEE3E0 /* ArvidTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArvidTests.swift; sourceTree = "<group>"; };
 		1A64022F1F62868000FEE3E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A6402381F62888D00FEE3E0 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		1A6402381F62888D00FEE3E0 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		1A64023A1F628BED00FEE3E0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		1AB798091F62B35B00D21E3E /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		1AB7980D1F62B9F800D21E3E /* SeekingEnergyBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekingEnergyBall.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 				1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */,
 				1A6402241F62868000FEE3E0 /* Info.plist */,
 				F92681B21F62963E005AB3DA /* FocusSquare.swift */,
-				1A6402381F62888D00FEE3E0 /* Plane.swift */,
+				1A6402381F62888D00FEE3E0 /* World.swift */,
 				1A64023A1F628BED00FEE3E0 /* Utilities.swift */,
 				1AB7980D1F62B9F800D21E3E /* SeekingEnergyBall.swift */,
 				F71A59D01F62BD4C00BD44B7 /* Game Mechanics */,
@@ -242,7 +242,7 @@
 				F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */,
 				1AB7980E1F62B9F800D21E3E /* SeekingEnergyBall.swift in Sources */,
 				1A64021B1F62868000FEE3E0 /* ViewController.swift in Sources */,
-				1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */,
+				1A6402391F62888D00FEE3E0 /* World.swift in Sources */,
 				F71A59D21F62BD9F00BD44B7 /* GameEngine.swift in Sources */,
 				F92681B51F629C7C005AB3DA /* TowerNode.swift in Sources */,
 				1AB7980A1F62B35B00D21E3E /* Updatable.swift in Sources */,

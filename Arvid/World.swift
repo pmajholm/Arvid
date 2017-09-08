@@ -9,7 +9,7 @@
 import Foundation
 import ARKit
 
-class Plane: SCNNode, GameEngineDelegate {
+class World: SCNNode, GameEngineDelegate {
     
     var plane: SCNNode
     
@@ -23,8 +23,13 @@ class Plane: SCNNode, GameEngineDelegate {
     
     var towers: [SCNNode] = []
     
+    // add monsters to this array so that towers can find them
+    var creeps: [CreepNode] = []
+    
+    var updatables: [Updatable] = []
+    
     override init() {
-        let geo = SCNPlane(width: 3, height: 2)
+        let geo = SCNPlane(width: 3, height: 1.5)
         plane = SCNNode(geometry: geo)
         geo.firstMaterial?.transparency = 0.2
         plane.eulerAngles = SCNVector3(-Double.pi/2, 0, 0)
@@ -51,7 +56,7 @@ class Plane: SCNNode, GameEngineDelegate {
         for i in 0...11 {
             var offsetX = Float(i) * 0.5
             var positionZ: Float = -(planeWidth/2) + (0.5/2)
-            if i > 4  {
+            if i > 5  {
                 offsetX = Float(i - 5) * 0.5
                 positionZ = (planeWidth/2) - (0.5/2)
             }
@@ -82,12 +87,16 @@ class Plane: SCNNode, GameEngineDelegate {
     func addTower(selectionName: String) {
 //        let tower = Tower()
 //        tower.position =
+        let tower = TowerNode(world: self)
+        self.updatables.append(tower)
+        plane.addChildNode(tower)
     }
     
     func spawnCreep() {
         let creepNode = CreepNode()
-        creepNode.position = SCNVector3(-planeWidth, self.position.y, self.position.z) //TODO: set position
+        creepNode.position = SCNVector3(-planeWidth, Float(creepNode.radius()) / 2, 0) //TODO: set position
         creepNode.name = "something" //TODO: set name
+        creeps.append(creepNode)
         plane.addChildNode(creepNode)
     }
     
