@@ -10,6 +10,8 @@ import Foundation
 
 protocol GameEngineDelegate{
     func sendCreep(creep: Creep)
+    func gameDidPause()
+    func gameDidResume()
 }
 
 protocol GameEnginePointsDelegate{
@@ -42,11 +44,12 @@ class GameEngine{
         self.hasStartedFirstGame = true
         gold = 200
         points = 0
-        startEngine()
+        resumeEngine()
         self.pointsDelegate?.gameDidStart()
     }
     
-    func startEngine(){
+    func resumeEngine(){
+        self.delegate?.gameDidResume()
         self.isPlaying = true
         creepTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { (timer) in
             self.delegate?.sendCreep(creep: Creep(level: 1))
@@ -54,6 +57,7 @@ class GameEngine{
     }
     
     func pauseEngine(){
+        self.delegate?.gameDidPause()
         self.isPlaying = false
         if let c = creepTimer{
             c.invalidate()

@@ -65,7 +65,7 @@
                         <outlet property="goldLabel" destination="ikZ-Rx-dbR" id="SW5-md-Bi8"/>
                         <outlet property="pointsLabel" destination="iNj-yy-yx8" id="M7F-er-sxT"/>
                         <outlet property="sceneView" destination="rdK-22-UbQ" id="EKI-JK-UTH"/>
-                        <outlet property="startButton" destination="9Ez-Gy-HXF" id="JHi-Ls-OTT"/>
+                        <outlet property="startButton" destination="9Ez-Gy-HXF" id="RgZ-Xo-eDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
