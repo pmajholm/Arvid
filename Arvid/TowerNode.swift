@@ -11,12 +11,12 @@ import SceneKit
 
 class TowerNode : SCNNode, Updatable {
     
-    let gameViewController: ViewController
+    let world: World
     let muzzle: SCNNode
     var i = 0
 
-    init(gameViewController: ViewController) {
-        self.gameViewController = gameViewController
+    init(world: World) {
+        self.world = world
         
         self.muzzle = SCNNode()
         muzzle.position = SCNVector3Make(0, 0.5, 0)
@@ -56,11 +56,11 @@ class TowerNode : SCNNode, Updatable {
         // 3. add energyball to updatables
         
         if i % 30 == 0 {
-            for monster in gameViewController.monsters {
-                let ball = SeekingEnergyBall(target: monster)
+            for creep in world.creeps {
+                let ball = SeekingEnergyBall(target: creep)
                 ball.worldPosition = muzzle.worldPosition
-                gameViewController.updatables.append(ball)
-                gameViewController.plane.addChildNode(ball)
+                world.updatables.append(ball)
+                world.plane.addChildNode(ball)
             }
         }
         i += 1

@@ -19,13 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let session = ARSession()
     let configuration: ARConfiguration = ARWorldTrackingConfiguration()
     
-    let plane = Plane()
-    
-    var updatables: [Updatable] = []
-    
-    // add monsters to this array so that towers can find them
-    var monsters: [Monster] = []
-    
+    let world = World()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +36,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
-        plane.isHidden = true
+        world.isHidden = true
         
         // FocusSquare
         setupFocusSquare()
@@ -50,18 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             self.screenCenter = self.sceneView.bounds.mid
         }
-        scene.rootNode.addChildNode(plane)
-        
-        let tower = TowerNode(gameViewController: self)
-        self.updatables.append(tower)
-        plane.addChildNode(tower)
-        
-        plane.addChildNode(Monster())
-        
-        let monster = Monster()
-        self.monsters.append(monster)
-        scene.rootNode.addChildNode(monster)
-        monster.position = SCNVector3Make(2.5, 0, 2.5)
+        scene.rootNode.addChildNode(world)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,14 +99,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
             self.updateFocusSquare()
-            for updatable in self.updatables {
+            for updatable in self.world.updatables {
                 updatable.update(time: time)
             }
         }
     }
     
     @IBAction func startPressed(_ sender: Any) {
-        
+        world.spawnCreep()
     }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
@@ -132,9 +115,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         if let result = planeHitTestResults.first {
             focusSquare?.hide()
-            plane.isHidden = false
+            world.isHidden = false
             let transform = result.worldTransform
-            plane.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+            world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
         }
     }
     
@@ -150,7 +133,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func updateFocusSquare() {
         guard let screenCenter = screenCenter else { return }
-        if plane.isHidden != true {
+        if world.isHidden != true {
             focusSquare?.hide()
         } else {
             focusSquare?.unhide()
@@ -166,7 +149,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                                          infinitePlane: Bool = false) -> (position: SCNVector3?, planeAnchor: ARPlaneAnchor?, hitAPlane: Bool){
         
         // -------------------------------------------------------------------------------
-        // 1. Always do a hit test against exisiting plane anchors first.
+        // 1. Always do a hit test against exisiting world anchors first.
         //    (If any such anchors exist & only within their extents.)
         
         let planeHitTestResults = sceneView.hitTest(position, types: .existingPlaneUsingExtent)
