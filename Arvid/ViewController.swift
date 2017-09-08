@@ -152,7 +152,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
             }
         }
     }
-    
    
     var screenCenter: CGPoint?
     
@@ -262,5 +261,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     func gameEngineDidPause() {
         //Change stop button to start button?
         self.startButton.setTitle("Start", for: .normal)
+    }
+}
+
+extension UIViewController: SCNPhysicsContactDelegate {
+    
+    public func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        
     }
 }

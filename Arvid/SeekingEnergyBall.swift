@@ -19,6 +19,12 @@ class SeekingEnergyBall: SCNNode, Updatable {
         super.init()
         let geo = SCNSphere(radius: 0.01)
         geometry = geo
+     
+        // collission
+        self.categoryBitMask = 2
+        let collission = SCNPhysicsBody(type: .dynamic, shape: nil)
+        self.physicsBody = collission
+        self.physicsBody?.isAffectedByGravity = false
         
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.red
@@ -35,5 +41,4 @@ class SeekingEnergyBall: SCNNode, Updatable {
         let unitVector = vector.normalized()
         self.localTranslate(by: unitVector * Float(time))
     }
-    
 }
