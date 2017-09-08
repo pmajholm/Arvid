@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     var dragOnInfinitePlanesEnabled = false
@@ -20,6 +20,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let configuration: ARConfiguration = ARWorldTrackingConfiguration()
     
     let plane = Plane()
+    
+    var updatables: [Updatable] = []
+    
+    // add monsters to this array so that towers can find them
+    var monsters: [Monster] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +40,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene
         let scene = SCNScene()
         
-        
         // Set the scene to the view
         sceneView.scene = scene
         plane.isHidden = true
@@ -47,9 +52,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         scene.rootNode.addChildNode(plane)
         
-        plane.addChildNode(Tower())
+        let tower = Tower(gameViewController: self)
+        self.updatables.append(tower)
+        plane.addChildNode(tower)
         
         plane.addChildNode(Monster())
+        
+        let monster = Monster()
+        self.monsters.append(monster)
+        scene.rootNode.addChildNode(monster)
+        monster.position = SCNVector3Make(2.5, 0, 2.5)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,17 +86,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
+    /*
+     // Override to create and configure nodes for anchors added to the view's session.
+     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+     let node = SCNNode()
      
-        return node
-    }
-*/
+     return node
+     }
+     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -104,6 +116,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
             self.updateFocusSquare()
+            for updatable in self.updatables {
+                updatable.update(time: time)
+            }
         }
     }
     
@@ -116,7 +131,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
         
         if let result = planeHitTestResults.first {
-             focusSquare?.hide()
+            focusSquare?.hide()
             plane.isHidden = false
             let transform = result.worldTransform
             plane.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
@@ -124,7 +139,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     var focusSquare: FocusSquare?
-     var screenCenter: CGPoint?
+    var screenCenter: CGPoint?
     
     func setupFocusSquare() {
         focusSquare?.isHidden = true
