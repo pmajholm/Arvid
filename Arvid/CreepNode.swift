@@ -9,12 +9,12 @@
 import Foundation
 import ARKit
 
-class Monster: SCNNode {
+class CreepNode: SCNNode, Updatable {
  
     override init() {
         super.init()
         
-        let sphereGeometry = SCNSphere(radius: 0.15)
+        let sphereGeometry = SCNSphere(radius: radius())
         let sphere = SCNNode(geometry: sphereGeometry)
         
         let sphereMaterial = SCNMaterial()
@@ -27,5 +27,13 @@ class Monster: SCNNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func radius() -> CGFloat {
+        return 0.15
+    }
+    
+    func update(time: TimeInterval) {
+        //self.position = SCNVector3(self.position.x + 0.1, self.position.y, self.position.y)
     }
 }

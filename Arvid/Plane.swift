@@ -19,6 +19,10 @@ class Plane: SCNNode {
     
     let selectionWidth: Float = 0.5
     
+    var selection: [SCNNode] = []
+    
+    var towers: [SCNNode] = []
+    
     override init() {
         let geo = SCNPlane(width: 3, height: 2)
         plane = SCNNode(geometry: geo)
@@ -42,7 +46,6 @@ class Plane: SCNNode {
     }
     
     func addSelections() {
-        
         for i in 0...11 {
             var offsetX = Float(i) * 0.5
             var positionZ: Float = -(planeWidth/2) + (0.5/2)
@@ -60,6 +63,30 @@ class Plane: SCNNode {
             node.position = SCNVector3(positionX, 0.1, positionZ)
             node.eulerAngles = SCNVector3(-Double.pi/2, 0, 0)
             node.name = "selection_\(i)"
+            selection.append(node)
         }
     }
+    
+    func getPositionFrom(name: String) -> SCNVector3? {
+        let filtered = selection.filter {
+            $0.name == name
+        }
+        if filtered.count > 0 {
+            return filtered[0].position
+        }
+        return nil
+    }
+    
+    func addTower(selectionName: String) {
+//        let tower = Tower()
+//        tower.position =
+    }
+    
+    func spawnCreep() {
+        let creepNode = CreepNode()
+        creepNode.position = SCNVector3(-planeWidth, self.position.y, self.position.z) //TODO: set position
+        creepNode.name = "something" //TODO: set name
+        plane.addChildNode(creepNode)
+    }
+
 }
