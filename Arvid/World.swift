@@ -104,6 +104,7 @@ class World: SCNNode, GameEngineDelegate {
     
     func sendCreep(creep: Creep) {
         //Create and send creep on plane
+        spawnCreep()
         print("Sending creep of level: \(String(creep.level))")
     }
     
