@@ -41,11 +41,11 @@ class GameEngine{
     func startGame(){
         gold = 200
         points = 0
-        startEngine()
+        resumeEngine()
         self.pointsDelegate?.gameDidStart()
     }
     
-    func startEngine(){
+    func resumeEngine(){
         self.delegate?.gameDidResume()
         self.isPlaying = true
         creepTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { (timer) in
