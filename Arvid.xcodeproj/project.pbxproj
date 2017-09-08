@@ -16,6 +16,7 @@
 		1A64022E1F62868000FEE3E0 /* ArvidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64022D1F62868000FEE3E0 /* ArvidTests.swift */; };
 		1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* Plane.swift */; };
 		1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023A1F628BED00FEE3E0 /* Utilities.swift */; };
+		F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B21F62963E005AB3DA /* FocusSquare.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1A64022F1F62868000FEE3E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6402381F62888D00FEE3E0 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		1A64023A1F628BED00FEE3E0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		F92681B21F62963E005AB3DA /* FocusSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				1A64021F1F62868000FEE3E0 /* Assets.xcassets */,
 				1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */,
 				1A6402241F62868000FEE3E0 /* Info.plist */,
+				F92681B21F62963E005AB3DA /* FocusSquare.swift */,
 				1A6402381F62888D00FEE3E0 /* Plane.swift */,
 				1A64023A1F628BED00FEE3E0 /* Utilities.swift */,
 			);
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */,
 				1A64021B1F62868000FEE3E0 /* ViewController.swift in Sources */,
 				1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */,
 				1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */,
@@ -359,7 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V46E8G979N;
+				DEVELOPMENT_TEAM = 7XT7RQW894;
 				INFOPLIST_FILE = Arvid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mayholm.Arvid;
@@ -373,7 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V46E8G979N;
+				DEVELOPMENT_TEAM = 7XT7RQW894;
 				INFOPLIST_FILE = Arvid/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mayholm.Arvid;
@@ -434,6 +438,7 @@
 				1A6402341F62868000FEE3E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A6402351F62868000FEE3E0 /* Build configuration list for PBXNativeTarget "ArvidTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +447,7 @@
 				1A6402371F62868000FEE3E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

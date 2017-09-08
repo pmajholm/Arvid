@@ -13,6 +13,12 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    
+    var dragOnInfinitePlanesEnabled = false
+    
+    let session = ARSession()
+    let configuration: ARConfiguration = ARWorldTrackingConfiguration()
+    
     let plane = Plane()
     
     override func viewDidLoad() {
@@ -20,16 +26,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the view's delegate
         sceneView.delegate = self
+        sceneView.session = session
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene()
+        
+   
+        focusSquare?.unhide()
+        DispatchQueue.main.async {
+            self.screenCenter = self.sceneView.bounds.mid
+        }
         
         // Set the scene to the view
         sceneView.scene = scene
         plane.isHidden = true
+        
+        // FocusSquare
+        setupFocusSquare()
         scene.rootNode.addChildNode(plane)
     }
     
@@ -37,10 +53,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingSessionConfiguration()
-        
-        // Run the view's session
-        sceneView.session.run(configuration)
+        if let worldSessionConfig = configuration as? ARWorldTrackingConfiguration {
+            worldSessionConfig.planeDetection = .horizontal
+            worldSessionConfig.isLightEstimationEnabled = true
+            session.run(worldSessionConfig, options: [.resetTracking, .removeExistingAnchors])
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,96 +97,118 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        DispatchQueue.main.async {
+            self.updateFocusSquare()
+        }
+    }
+    
     @IBAction func startPressed(_ sender: Any) {
         
     }
-    
-//    func translateBasedOnScreenPos(_ pos: CGPoint, instantly: Bool, infinitePlane: Bool) {
-//        let result = worldPositionFromScreenPosition(pos, infinitePlane: true)
-//
-//        moveVirtualObjectToPosition(result.position, instantly, !result.hitAPlane)
-//    }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: self.view)
         let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
         
         if let result = planeHitTestResults.first {
+             focusSquare?.hide()
             plane.isHidden = false
             let transform = result.worldTransform
             plane.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
         }
     }
     
-//    func worldPositionFromScreenPosition(_ position: CGPoint,
-//                                         in sceneView: ARSCNView,
-//                                         objectPos: float3?,
-//                                         infinitePlane: Bool = false) -> (position: float3?, planeAnchor: ARPlaneAnchor?, hitAPlane: Bool) {
-//
-//        let dragOnInfinitePlanesEnabled = UserDefaults.standard.bool(for: .dragOnInfinitePlanes)
-//
-//        // -------------------------------------------------------------------------------
-//        // 1. Always do a hit test against exisiting plane anchors first.
-//        //    (If any such anchors exist & only within their extents.)
-//
-//        let planeHitTestResults = sceneView.hitTest(position, types: .existingPlaneUsingExtent)
-//        if let result = planeHitTestResults.first {
-//
-//            let planeHitTestPosition = result.worldTransform.translation
-//            let planeAnchor = result.anchor
-//
-//            // Return immediately - this is the best possible outcome.
-//            return (planeHitTestPosition, planeAnchor as? ARPlaneAnchor, true)
-//        }
-//
-//        // -------------------------------------------------------------------------------
-//        // 2. Collect more information about the environment by hit testing against
-//        //    the feature point cloud, but do not return the result yet.
-//
-//        var featureHitTestPosition: float3?
-//        var highQualityFeatureHitTestResult = false
-//
-//        let highQualityfeatureHitTestResults = sceneView.hitTestWithFeatures(position, coneOpeningAngleInDegrees: 18, minDistance: 0.2, maxDistance: 2.0)
-//
-//        if !highQualityfeatureHitTestResults.isEmpty {
-//            let result = highQualityfeatureHitTestResults[0]
-//            featureHitTestPosition = result.position
-//            highQualityFeatureHitTestResult = true
-//        }
-//
-//        // -------------------------------------------------------------------------------
-//        // 3. If desired or necessary (no good feature hit test result): Hit test
-//        //    against an infinite, horizontal plane (ignoring the real world).
-//
-//        if (infinitePlane && dragOnInfinitePlanesEnabled) || !highQualityFeatureHitTestResult {
-//
-//            if let pointOnPlane = objectPos {
-//                let pointOnInfinitePlane = sceneView.hitTestWithInfiniteHorizontalPlane(position, pointOnPlane)
-//                if pointOnInfinitePlane != nil {
-//                    return (pointOnInfinitePlane, nil, true)
-//                }
-//            }
-//        }
-//
-//        // -------------------------------------------------------------------------------
-//        // 4. If available, return the result of the hit test against high quality
-//        //    features if the hit tests against infinite planes were skipped or no
-//        //    infinite plane was hit.
-//
-//        if highQualityFeatureHitTestResult {
-//            return (featureHitTestPosition, nil, false)
-//        }
-//
-//        // -------------------------------------------------------------------------------
-//        // 5. As a last resort, perform a second, unfiltered hit test against features.
-//        //    If there are no features in the scene, the result returned here will be nil.
-//
-//        let unfilteredFeatureHitTestResults = sceneView.hitTestWithFeatures(position)
-//        if !unfilteredFeatureHitTestResults.isEmpty {
-//            let result = unfilteredFeatureHitTestResults[0]
-//            return (result.position, nil, false)
-//        }
-//
-//        return (nil, nil, false)
-//    }
+    var focusSquare: FocusSquare?
+     var screenCenter: CGPoint?
+    
+    func setupFocusSquare() {
+        focusSquare?.isHidden = true
+        focusSquare?.removeFromParentNode()
+        focusSquare = FocusSquare()
+        sceneView.scene.rootNode.addChildNode(focusSquare!)
+    }
+    
+    func updateFocusSquare() {
+        guard let screenCenter = screenCenter else { return }
+        if plane.isHidden != true {
+            focusSquare?.hide()
+        } else {
+            focusSquare?.unhide()
+            let (worldPos, planeAnchor, _) = worldPositionFromScreenPosition(screenCenter, objectPos: focusSquare?.position)
+            if let worldPos = worldPos {
+                focusSquare?.update(for: worldPos, planeAnchor: planeAnchor, camera: self.session.currentFrame?.camera)
+            }
+        }
+    }
+    
+    func worldPositionFromScreenPosition(_ position: CGPoint,
+                                         objectPos: SCNVector3?,
+                                         infinitePlane: Bool = false) -> (position: SCNVector3?, planeAnchor: ARPlaneAnchor?, hitAPlane: Bool){
+        
+        // -------------------------------------------------------------------------------
+        // 1. Always do a hit test against exisiting plane anchors first.
+        //    (If any such anchors exist & only within their extents.)
+        
+        let planeHitTestResults = sceneView.hitTest(position, types: .existingPlaneUsingExtent)
+        if let result = planeHitTestResults.first {
+            
+            let planeHitTestPosition = SCNVector3.positionFromTransform(result.worldTransform)
+            let planeAnchor = result.anchor
+            
+            // Return immediately - this is the best possible outcome.
+            return (planeHitTestPosition, planeAnchor as? ARPlaneAnchor, true)
+        }
+        
+        // -------------------------------------------------------------------------------
+        // 2. Collect more information about the environment by hit testing against
+        //    the feature point cloud, but do not return the result yet.
+        
+        var featureHitTestPosition: SCNVector3?
+        var highQualityFeatureHitTestResult = false
+        
+        let highQualityfeatureHitTestResults = sceneView.hitTestWithFeatures(position, coneOpeningAngleInDegrees: 18, minDistance: 0.2, maxDistance: 2.0)
+        
+        if !highQualityfeatureHitTestResults.isEmpty {
+            let result = highQualityfeatureHitTestResults[0]
+            featureHitTestPosition = result.position
+            highQualityFeatureHitTestResult = true
+        }
+        
+        // -------------------------------------------------------------------------------
+        // 3. If desired or necessary (no good feature hit test result): Hit test
+        //    against an infinite, horizontal plane (ignoring the real world).
+        
+        if (infinitePlane && dragOnInfinitePlanesEnabled) || !highQualityFeatureHitTestResult {
+            
+            let pointOnPlane = objectPos ?? SCNVector3Zero
+            
+            let pointOnInfinitePlane = sceneView.hitTestWithInfiniteHorizontalPlane(position, pointOnPlane)
+            if pointOnInfinitePlane != nil {
+                return (pointOnInfinitePlane, nil, true)
+            }
+        }
+        
+        // -------------------------------------------------------------------------------
+        // 4. If available, return the result of the hit test against high quality
+        //    features if the hit tests against infinite planes were skipped or no
+        //    infinite plane was hit.
+        
+        if highQualityFeatureHitTestResult {
+            return (featureHitTestPosition, nil, false)
+        }
+        
+        // -------------------------------------------------------------------------------
+        // 5. As a last resort, perform a second, unfiltered hit test against features.
+        //    If there are no features in the scene, the result returned here will be nil.
+        
+        let unfilteredFeatureHitTestResults = sceneView.hitTestWithFeatures(position)
+        if !unfilteredFeatureHitTestResults.isEmpty {
+            let result = unfilteredFeatureHitTestResults[0]
+            return (result.position, nil, false)
+        }
+        
+        return (nil, nil, false)
+    }
 }
