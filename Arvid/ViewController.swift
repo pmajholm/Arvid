@@ -47,9 +47,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         scene.rootNode.addChildNode(plane)
         
-        scene.rootNode.addChildNode(Tower())
+        plane.addChildNode(Tower())
         
-        scene.rootNode.addChildNode(Monster())
+        plane.addChildNode(Monster())
     }
     
     override func viewWillAppear(_ animated: Bool) {
