@@ -24,6 +24,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     let world = World()
     
+    var initGame = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
