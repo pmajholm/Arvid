@@ -21,6 +21,8 @@ protocol GameEnginePointsDelegate{
 
 class GameEngine{
     var creepTimer: Timer?
+    var isPlaying = false
+    var hasStartedFirstGame = false
     var points = 0{
         didSet{
             self.pointsDelegate?.pointsValueUpdated(points: points)
@@ -37,6 +39,7 @@ class GameEngine{
     static let sharedInstance = GameEngine()
     
     func startGame(){
+        self.hasStartedFirstGame = true
         gold = 200
         points = 0
         startEngine()
@@ -44,12 +47,14 @@ class GameEngine{
     }
     
     func startEngine(){
+        self.isPlaying = true
         creepTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { (timer) in
             self.delegate?.sendCreep(creep: Creep(level: 1))
         })
     }
     
     func pauseEngine(){
+        self.isPlaying = false
         if let c = creepTimer{
             c.invalidate()
         }
