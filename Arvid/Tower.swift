@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Tower{
+class Tower2{
     var level: Int!
     var attackPoints: Int!
     var cost: Int!

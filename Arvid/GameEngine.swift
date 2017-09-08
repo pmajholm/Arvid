@@ -51,11 +51,11 @@ class GameEngine{
         self.delegate?.gameEngineDidPause()
     }
     
-    func buyTower(level: Int) -> Tower?{
-        let cost = Tower.getCost(level: level)
+    func buyTower(level: Int) -> Tower2?{
+        let cost = Tower2.getCost(level: level)
         if cost <= self.gold{
             self.gold -= cost
-            return Tower(level: level)
+            return Tower2(level: level)
         }
         return nil
     }
