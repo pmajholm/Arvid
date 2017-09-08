@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDelegate {
     @IBOutlet weak var goldLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -64,6 +65,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         self.monsters.append(monster)
         scene.rootNode.addChildNode(monster)
         monster.position = SCNVector3Make(2.5, 0, 2.5)
+        
+        GameEngine.sharedInstance.pointsDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +128,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     }
     
     @IBAction func startPressed(_ sender: Any) {
-        
+        if GameEngine.sharedInstance.isPlaying{
+            GameEngine.sharedInstance.pauseEngine()
+        }else{
+            if GameEngine.sharedInstance.hasStartedFirstGame{
+                GameEngine.sharedInstance.startEngine()
+            }else{
+                GameEngine.sharedInstance.startGame()
+            }
+        }
     }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
@@ -243,9 +254,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     func gameDidStart() {
         //Change start button to stop button?
+        self.startButton.setTitle("Stop", for: .normal)
     }
     
     func gameEngineDidPause() {
         //Change stop button to start button?
+        self.startButton.setTitle("Start", for: .normal)
     }
 }

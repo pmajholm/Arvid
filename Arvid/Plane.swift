@@ -32,6 +32,8 @@ class Plane: SCNNode, GameEngineDelegate {
         
         self.addChildNode(plane)
         addSelections()
+        
+        GameEngine.sharedInstance.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -93,6 +95,7 @@ class Plane: SCNNode, GameEngineDelegate {
     
     func sendCreep(creep: Creep) {
         //Create and send creep on plane
+        print("Sending creep of level: \(String(creep.level))")
     }
 
 }
