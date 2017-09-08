@@ -43,14 +43,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         sceneView.scene = scene
         world.isHidden = true
         
-        // FocusSquare
-        setupFocusSquare()
-        focusSquare?.unhide()
+      
         DispatchQueue.main.async {
             self.screenCenter = self.sceneView.bounds.mid
         }
         
         scene.rootNode.addChildNode(world)
+        
+        // FocusSquare
+        setupFocusSquare()
+        focusSquare?.isHidden = false
+        
         GameEngine.sharedInstance.pointsDelegate = self
     }
     
@@ -104,12 +107,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        DispatchQueue.main.async {
+            self.updateFocusSquare()
+        }
         if GameEngine.sharedInstance.isPlaying{
-            DispatchQueue.main.async {
-                self.updateFocusSquare()
-                for updatable in self.world.updatables {
-                    updatable.update(time: time)
-                }
+            
+            for updatable in self.world.updatables {
+                updatable.update(time: time)
             }
         }
     }

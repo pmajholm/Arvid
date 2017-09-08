@@ -16,11 +16,11 @@ class CreepNode: SCNNode, Updatable {
         
         let sphereGeometry = SCNSphere(radius: radius())
         let sphere = SCNNode(geometry: sphereGeometry)
-        let collission = SCNPhysicsBody(type: .dynamic, shape: nil)
+        let collission = SCNPhysicsBody(type: .static, shape: nil)
         let sphereMaterial = SCNMaterial()
         sphere.categoryBitMask = 1
         sphere.physicsBody = collission
-        sphere.physicsBody?.isAffectedByGravity = false
+        //sphere.physicsBody?.isAffectedByGravity = false
         sphereMaterial.diffuse.contents = UIColor.green
         
         sphereGeometry.materials = [sphereMaterial]

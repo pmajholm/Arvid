@@ -31,7 +31,7 @@ class World: SCNNode, GameEngineDelegate {
     override init() {
         let geo = SCNPlane(width: 3, height: 1.5)
         plane = SCNNode(geometry: geo)
-        geo.firstMaterial?.transparency = 0.2
+        geo.firstMaterial?.transparency = 0.05
         plane.eulerAngles = SCNVector3(-Double.pi/2, 0, 0)
         super.init()
         
