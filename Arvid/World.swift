@@ -106,5 +106,13 @@ class World: SCNNode, GameEngineDelegate {
         print("Sending creep of level: \(String(creep.level))")
         self.spawnCreep()
     }
+    
+    func gameDidPause() {
+        //Pause all nodes in their actions
+    }
+    
+    func gameDidResume() {
+        //Resume all nodes in their actions
+    }
 
 }
