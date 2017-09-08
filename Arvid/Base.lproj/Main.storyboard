@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Arvid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bNB-R5-eZz"/>
+                        <viewControllerLayoutGuide type="bottom" id="w2K-vU-cX5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5K8-aK-UdY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdK-22-UbQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ez-Gy-HXF">
+                                <rect key="frame" x="170" y="617" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Vmi-Q9-6sc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Ez-Gy-HXF" firstAttribute="centerX" secondItem="5K8-aK-UdY" secondAttribute="centerX" id="G0I-6z-Tt0"/>
+                            <constraint firstItem="w2K-vU-cX5" firstAttribute="top" secondItem="9Ez-Gy-HXF" secondAttribute="bottom" constant="20" id="YXe-vT-HPe"/>
+                            <constraint firstItem="rdK-22-UbQ" firstAttribute="leading" secondItem="5K8-aK-UdY" secondAttribute="leading" id="e23-lA-CtD"/>
+                            <constraint firstAttribute="bottom" secondItem="rdK-22-UbQ" secondAttribute="bottom" id="eoM-Ne-kto"/>
+                            <constraint firstItem="rdK-22-UbQ" firstAttribute="top" secondItem="5K8-aK-UdY" secondAttribute="top" id="gaN-ae-6XR"/>
+                            <constraint firstAttribute="trailing" secondItem="rdK-22-UbQ" secondAttribute="trailing" id="reM-Tv-5ZH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="rdK-22-UbQ" id="EKI-JK-UTH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="BJ5-YD-BWx">
+                    <connections>
+                        <action selector="tapped:" destination="BV1-FR-VrT" id="JfA-pO-uuB"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+</document>
