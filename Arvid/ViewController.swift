@@ -122,7 +122,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
             GameEngine.sharedInstance.pauseEngine()
         }else{
             if GameEngine.sharedInstance.hasStartedFirstGame{
-                GameEngine.sharedInstance.startEngine()
+                GameEngine.sharedInstance.resumeEngine()
             }else{
                 GameEngine.sharedInstance.startGame()
             }
