@@ -59,6 +59,7 @@ class Plane: SCNNode {
             self.addChildNode(node)
             node.position = SCNVector3(positionX, 0.1, positionZ)
             node.eulerAngles = SCNVector3(-Double.pi/2, 0, 0)
+            node.name = "selection_\(i)"
         }
     }
 }
