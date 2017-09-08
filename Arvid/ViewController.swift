@@ -10,7 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDelegate {
+    @IBOutlet weak var goldLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -44,6 +46,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             self.screenCenter = self.sceneView.bounds.mid
         }
+        
         scene.rootNode.addChildNode(world)
     }
     
@@ -211,5 +214,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         return (nil, nil, false)
+    }
+    
+    //MARK: GameEnginePointsDelegate
+    func pointsValueUpdated(points: Int) {
+        self.pointsLabel.text = "\(points) points"
+    }
+    
+    func goldValueUpdated(gold: Int) {
+        self.goldLabel.text = "\(gold) gold"
+    }
+    
+    func gameDidStart() {
+        //Change start button to stop button?
+    }
+    
+    func gameEngineDidPause() {
+        //Change stop button to start button?
     }
 }

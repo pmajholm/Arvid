@@ -34,6 +34,6 @@ class CreepNode: SCNNode, Updatable {
     }
     
     func update(time: TimeInterval) {
-        //self.position = SCNVector3(self.position.x + 0.1, self.position.y, self.position.y)
+        self.position = SCNVector3(self.position.x + 0.1, self.position.y, self.position.z)
     }
 }

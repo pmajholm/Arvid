@@ -9,7 +9,7 @@
 import Foundation
 import ARKit
 
-class World: SCNNode {
+class World: SCNNode, GameEngineDelegate {
     
     var plane: SCNNode
     
@@ -96,6 +96,12 @@ class World: SCNNode {
         creepNode.name = "something" //TODO: set name
         creeps.append(creepNode)
         plane.addChildNode(creepNode)
+    }
+    
+    //MARK: Game Engine Delegate
+    
+    func sendCreep(creep: Creep) {
+        //Create and send creep on plane
     }
 
 }
