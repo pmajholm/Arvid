@@ -94,6 +94,7 @@ class World: SCNNode, GameEngineDelegate {
         creepNode.position = SCNVector3(-planeWidth, Float(creepNode.radius()) / 2, 0) //TODO: set position
         creepNode.name = "something" //TODO: set name
         creeps.append(creepNode)
+        self.updatables.append(creepNode)
         plane.addChildNode(creepNode)
     }
     
