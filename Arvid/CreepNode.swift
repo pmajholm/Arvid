@@ -15,18 +15,23 @@ class CreepNode: SCNNode, Updatable, CreepDelegate {
         super.init()
         self.creep = creep
         self.creep.delegate = self
-        let sphereGeometry = SCNSphere(radius: radius())
-        let sphere = SCNNode(geometry: sphereGeometry)
-        let collission = SCNPhysicsBody(type: .static, shape: nil)
-        let sphereMaterial = SCNMaterial()
-        sphere.categoryBitMask = 1
-        sphere.physicsBody = collission
-        //sphere.physicsBody?.isAffectedByGravity = false
-        sphereMaterial.diffuse.contents = UIColor.green
         
-        sphereGeometry.materials = [sphereMaterial]
+        let craft = SCNScene(named: "art.scnassets/aircraft.dae")
         
-        self.addChildNode(sphere)
+//       // let sphereGeometry = SCNSphere(radius: radius())
+//        let sphere = SCNNode(geometry: sphereGeometry)
+//        let collission = SCNPhysicsBody(type: .static, shape: nil)
+//        let sphereMaterial = SCNMaterial()
+//        sphere.categoryBitMask = 1
+//        sphere.physicsBody = collission
+//        //sphere.physicsBody?.isAffectedByGravity = false
+//        sphereMaterial.diffuse.contents = UIColor.green
+//
+//        sphereGeometry.materials = [sphereMaterial]
+//
+//        self.addChildNode(sphere)
+        
+        addToScene(scene: craft!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +40,12 @@ class CreepNode: SCNNode, Updatable, CreepDelegate {
     
     func radius() -> CGFloat {
         return 0.15
+    }
+    
+    func addToScene(scene: SCNScene) {
+        for child in scene.rootNode.childNodes {
+            addChildNode(child)
+        }
     }
     
     func update(time: TimeInterval) {

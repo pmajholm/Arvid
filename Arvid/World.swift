@@ -91,7 +91,6 @@ class World: SCNNode, GameEngineDelegate {
             self.updatables.append(tower)
             addChildNode(tower)
         }
-        
     }
     
     func spawnCreep(creep: Creep) {
