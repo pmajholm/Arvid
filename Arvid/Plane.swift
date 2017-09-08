@@ -96,3 +96,11 @@ class Plane: SCNNode, GameEngineDelegate {
     }
 
 }
+
+extension UIViewController: SCNPhysicsContactDelegate {
+    
+    public func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        
+    }
+}
+
