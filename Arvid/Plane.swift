@@ -17,8 +17,10 @@ class Plane: SCNNode {
         let geo = SCNPlane(width: 3, height: 2)
         plane = SCNNode(geometry: geo)
         plane.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
-        self.addChildNode(plane)
+        
         super.init()
+        
+        self.addChildNode(plane)
     }
     
     required init?(coder aDecoder: NSCoder) {
