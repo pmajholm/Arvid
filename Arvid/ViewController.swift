@@ -150,16 +150,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
                     print("select")
                 }
             }
-//
-//======
-//        let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-//
-//        if let result = planeHitTestResults.first {
-//            focusSquare?.hide()
-//            world.isHidden = false
-//            let transform = result.worldTransform
-//            world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
-//>>>>>>> 1d7a5a82eec660d300010ee250d415f9c5e93ee3
         }
     }
     
