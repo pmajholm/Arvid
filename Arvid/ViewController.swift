@@ -234,11 +234,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     //MARK: GameEnginePointsDelegate
     func pointsValueUpdated(points: Int) {
-        self.pointsLabel.text = "\(points)"
+        self.pointsLabel.text = "\(points) points"
     }
     
     func goldValueUpdated(gold: Int) {
-        self.goldLabel.text = "\(gold)"
+        self.goldLabel.text = "\(gold) gold"
     }
     
     func gameDidStart() {
