@@ -102,10 +102,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        DispatchQueue.main.async {
-            self.updateFocusSquare()
-            for updatable in self.world.updatables {
-                updatable.update(time: time)
+        if GameEngine.sharedInstance.isPlaying{
+            DispatchQueue.main.async {
+                self.updateFocusSquare()
+                for updatable in self.world.updatables {
+                    updatable.update(time: time)
+                }
             }
         }
     }
