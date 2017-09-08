@@ -34,11 +34,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a new scene
         let scene = SCNScene()
         
-   
-        focusSquare?.unhide()
-        DispatchQueue.main.async {
-            self.screenCenter = self.sceneView.bounds.mid
-        }
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -46,7 +41,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // FocusSquare
         setupFocusSquare()
+ focusSquare?.unhide()
+        DispatchQueue.main.async {
+            self.screenCenter = self.sceneView.bounds.mid
+        }
         scene.rootNode.addChildNode(plane)
+        
+        scene.rootNode.addChildNode(Tower())
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
