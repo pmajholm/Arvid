@@ -111,7 +111,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     }
     
     @IBAction func startPressed(_ sender: Any) {
-        world.spawnCreep()
         if GameEngine.sharedInstance.isPlaying{
             GameEngine.sharedInstance.pauseEngine()
         }else{
