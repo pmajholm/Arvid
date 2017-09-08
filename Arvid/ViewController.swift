@@ -24,6 +24,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     let world = World()
     
+    var initGame = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,13 +128,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: self.view)
-        let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-        
-        if let result = planeHitTestResults.first {
-            focusSquare?.hide()
-            world.isHidden = false
-            let transform = result.worldTransform
-            world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+          if !initGame {
+            let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
+            if let result = planeHitTestResults.first {
+                focusSquare?.hide()
+                world.isHidden = false
+                let transform = result.worldTransform
+                world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+                initGame = true
+            }
+          } else {
+            var hitTestOptions = [SCNHitTestOption: Any]()
+            hitTestOptions[SCNHitTestOption.boundingBoxOnly] = true
+            
+            let results: [SCNHitTestResult] = sceneView.hitTest(point, options: hitTestOptions)
+            for result in results {
+                if let name = result.node.name, name.contains("selection") {
+                    world.addTower(selectionName: name)
+                }
+            }
         }
     }
     
