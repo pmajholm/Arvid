@@ -40,7 +40,7 @@ class GameEngine{
         gold = 200
         points = 0
         startEngine()
-        self.delegate?.gameDidStart()
+        self.pointsDelegate?.gameDidStart()
     }
     
     func startEngine(){
@@ -53,7 +53,7 @@ class GameEngine{
         if let c = creepTimer{
             c.invalidate()
         }
-        self.delegate?.gameEngineDidPause()
+        self.pointsDelegate?.gameEngineDidPause()
     }
     
     func buyTower(level: Int) -> Tower?{
