@@ -16,8 +16,11 @@
 		1A64022E1F62868000FEE3E0 /* ArvidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64022D1F62868000FEE3E0 /* ArvidTests.swift */; };
 		1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* Plane.swift */; };
 		1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023A1F628BED00FEE3E0 /* Utilities.swift */; };
+		F71A59D21F62BD9F00BD44B7 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71A59D11F62BD9F00BD44B7 /* GameEngine.swift */; };
+		F7A4A23A1F62C507002A7599 /* Creep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A2391F62C507002A7599 /* Creep.swift */; };
+		F7A4A23C1F62C736002A7599 /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A23B1F62C736002A7599 /* Tower.swift */; };
 		F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B21F62963E005AB3DA /* FocusSquare.swift */; };
-		F92681B51F629C7C005AB3DA /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B41F629C7C005AB3DA /* Tower.swift */; };
+		F92681B51F629C7C005AB3DA /* TowerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B41F629C7C005AB3DA /* TowerNode.swift */; };
 		F92681B71F629D81005AB3DA /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B61F629D80005AB3DA /* Monster.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +48,11 @@
 		1A64022F1F62868000FEE3E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6402381F62888D00FEE3E0 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		1A64023A1F628BED00FEE3E0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		F71A59D11F62BD9F00BD44B7 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		F7A4A2391F62C507002A7599 /* Creep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creep.swift; sourceTree = "<group>"; };
+		F7A4A23B1F62C736002A7599 /* Tower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
 		F92681B21F62963E005AB3DA /* FocusSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
-		F92681B41F629C7C005AB3DA /* Tower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
+		F92681B41F629C7C005AB3DA /* TowerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TowerNode.swift; sourceTree = "<group>"; };
 		F92681B61F629D80005AB3DA /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,13 +100,14 @@
 				1A6402181F62868000FEE3E0 /* art.scnassets */,
 				1A64021A1F62868000FEE3E0 /* ViewController.swift */,
 				1A64021C1F62868000FEE3E0 /* Main.storyboard */,
-				F92681B41F629C7C005AB3DA /* Tower.swift */,
+				F92681B41F629C7C005AB3DA /* TowerNode.swift */,
 				1A64021F1F62868000FEE3E0 /* Assets.xcassets */,
 				1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */,
 				1A6402241F62868000FEE3E0 /* Info.plist */,
 				F92681B21F62963E005AB3DA /* FocusSquare.swift */,
 				1A6402381F62888D00FEE3E0 /* Plane.swift */,
 				1A64023A1F628BED00FEE3E0 /* Utilities.swift */,
+				F71A59D01F62BD4C00BD44B7 /* Game Mechanics */,
 			);
 			path = Arvid;
 			sourceTree = "<group>";
@@ -112,6 +119,16 @@
 				1A64022F1F62868000FEE3E0 /* Info.plist */,
 			);
 			path = ArvidTests;
+			sourceTree = "<group>";
+		};
+		F71A59D01F62BD4C00BD44B7 /* Game Mechanics */ = {
+			isa = PBXGroup;
+			children = (
+				F71A59D11F62BD9F00BD44B7 /* GameEngine.swift */,
+				F7A4A2391F62C507002A7599 /* Creep.swift */,
+				F7A4A23B1F62C736002A7599 /* Tower.swift */,
+			);
+			name = "Game Mechanics";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +236,11 @@
 				F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */,
 				1A64021B1F62868000FEE3E0 /* ViewController.swift in Sources */,
 				1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */,
-				F92681B51F629C7C005AB3DA /* Tower.swift in Sources */,
+				F71A59D21F62BD9F00BD44B7 /* GameEngine.swift in Sources */,
+				F92681B51F629C7C005AB3DA /* TowerNode.swift in Sources */,
 				1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */,
+				F7A4A23A1F62C507002A7599 /* Creep.swift in Sources */,
+				F7A4A23C1F62C736002A7599 /* Tower.swift in Sources */,
 				1A6402171F62868000FEE3E0 /* AppDelegate.swift in Sources */,
 				F92681B71F629D81005AB3DA /* Monster.swift in Sources */,
 			);

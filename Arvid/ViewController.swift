@@ -47,7 +47,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         scene.rootNode.addChildNode(plane)
         
-        plane.addChildNode(Tower())
+        plane.addChildNode(TowerNode())
         
         plane.addChildNode(Monster())
     }
