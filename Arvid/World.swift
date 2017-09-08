@@ -84,11 +84,14 @@ class World: SCNNode, GameEngineDelegate {
     }
     
     func addTower(selectionName: String) {
-        let tower = TowerNode(world: self, tower: Tower(level: 1))
-        tower.position = getPositionFrom(name: selectionName)!
-//        tower.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
-        self.updatables.append(tower)
-        addChildNode(tower)
+        if let towerModel = GameEngine.sharedInstance.buyTower(level: 1){
+            let tower = TowerNode(world: self, tower: towerModel)
+            tower.position = getPositionFrom(name: selectionName)!
+            //        tower.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
+            self.updatables.append(tower)
+            addChildNode(tower)
+        }
+        
     }
     
     func spawnCreep(creep: Creep) {
