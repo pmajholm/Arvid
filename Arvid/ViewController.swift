@@ -240,4 +240,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     func goldValueUpdated(gold: Int) {
         self.goldLabel.text = "\(gold)"
     }
+    
+    func gameDidStart() {
+        //Change start button to stop button?
+    }
+    
+    func gameEngineDidPause() {
+        //Change stop button to start button?
+    }
 }

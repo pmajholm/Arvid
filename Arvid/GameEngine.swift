@@ -9,14 +9,14 @@
 import Foundation
 
 protocol GameEngineDelegate{
-    func gameDidStart()
     func sendCreep(creep: Creep)
-    func gameEngineDidPause()
 }
 
 protocol GameEnginePointsDelegate{
     func goldValueUpdated(gold: Int)
     func pointsValueUpdated(points: Int)
+    func gameDidStart()
+    func gameEngineDidPause()
 }
 
 class GameEngine{

@@ -9,7 +9,7 @@
 import Foundation
 import ARKit
 
-class Plane: SCNNode {
+class Plane: SCNNode, GameEngineDelegate {
     
     var plane: SCNNode
     
@@ -87,6 +87,12 @@ class Plane: SCNNode {
         creepNode.position = SCNVector3(-planeWidth, self.position.y, self.position.z) //TODO: set position
         creepNode.name = "something" //TODO: set name
         plane.addChildNode(creepNode)
+    }
+    
+    //MARK: Game Engine Delegate
+    
+    func sendCreep(creep: Creep) {
+        //Create and send creep on plane
     }
 
 }
