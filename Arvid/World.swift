@@ -83,9 +83,8 @@ class World: SCNNode, GameEngineDelegate {
     }
     
     func addTower(selectionName: String) {
-//        let tower = Tower()
-//        tower.position =
         let tower = TowerNode(world: self)
+        tower.position = getPositionFrom(name: selectionName)!
         self.updatables.append(tower)
         plane.addChildNode(tower)
     }
