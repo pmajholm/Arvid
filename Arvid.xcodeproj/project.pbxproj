@@ -16,6 +16,7 @@
 		1A64022E1F62868000FEE3E0 /* ArvidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64022D1F62868000FEE3E0 /* ArvidTests.swift */; };
 		1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* Plane.swift */; };
 		1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023A1F628BED00FEE3E0 /* Utilities.swift */; };
+		1A64023D1F6291D900FEE3E0 /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023C1F6291D900FEE3E0 /* Tower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1A64022F1F62868000FEE3E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6402381F62888D00FEE3E0 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		1A64023A1F628BED00FEE3E0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		1A64023C1F6291D900FEE3E0 /* Tower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				1A6402241F62868000FEE3E0 /* Info.plist */,
 				1A6402381F62888D00FEE3E0 /* Plane.swift */,
 				1A64023A1F628BED00FEE3E0 /* Utilities.swift */,
+				1A64023C1F6291D900FEE3E0 /* Tower.swift */,
 			);
 			path = Arvid;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			files = (
 				1A64021B1F62868000FEE3E0 /* ViewController.swift in Sources */,
 				1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */,
+				1A64023D1F6291D900FEE3E0 /* Tower.swift in Sources */,
 				1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */,
 				1A6402171F62868000FEE3E0 /* AppDelegate.swift in Sources */,
 			);

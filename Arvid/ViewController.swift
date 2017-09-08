@@ -31,6 +31,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         plane.isHidden = true
         scene.rootNode.addChildNode(plane)
+        
+        scene.rootNode.addChildNode(Tower())
     }
     
     override func viewWillAppear(_ animated: Bool) {
