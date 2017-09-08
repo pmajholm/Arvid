@@ -26,7 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     var updatables: [Updatable] = []
     
     // add monsters to this array so that towers can find them
-    var monsters: [Monster] = []
+    var monsters: [CreepNode] = []
     
     
     override func viewDidLoad() {
@@ -58,9 +58,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         self.updatables.append(tower)
         plane.addChildNode(tower)
         
-        plane.addChildNode(Monster())
+        plane.addChildNode(CreepNode())
         
-        let monster = Monster()
+        let monster = CreepNode()
         self.monsters.append(monster)
         scene.rootNode.addChildNode(monster)
         monster.position = SCNVector3Make(2.5, 0, 2.5)
