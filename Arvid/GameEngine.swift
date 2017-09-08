@@ -12,6 +12,9 @@ protocol GameEngineDelegate{
     func gameDidStart()
     func sendCreep(creep: Creep)
     func gameEngineDidPause()
+}
+
+protocol GameEnginePointsDelegate{
     func goldValueUpdated(gold: Int)
     func pointsValueUpdated(points: Int)
 }
@@ -20,15 +23,16 @@ class GameEngine{
     var creepTimer: Timer?
     var points = 0{
         didSet{
-            self.delegate?.pointsValueUpdated(points: points)
+            self.pointsDelegate?.pointsValueUpdated(points: points)
         }
     }
     var gold = 0{
         didSet{
-            self.delegate?.goldValueUpdated(gold: gold)
+            self.pointsDelegate?.goldValueUpdated(gold: gold)
         }
     }
     var delegate: GameEngineDelegate?
+    var pointsDelegate: GameEnginePointsDelegate?
     
     static let sharedInstance = GameEngine()
     

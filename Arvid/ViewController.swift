@@ -10,7 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDelegate {
+    @IBOutlet weak var goldLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -228,5 +230,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         return (nil, nil, false)
+    }
+    
+    //MARK: GameEnginePointsDelegate
+    func pointsValueUpdated(points: Int) {
+        self.pointsLabel.text = "\(points)"
+    }
+    
+    func goldValueUpdated(gold: Int) {
+        self.goldLabel.text = "\(gold)"
     }
 }
