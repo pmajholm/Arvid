@@ -52,7 +52,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         scene.rootNode.addChildNode(plane)
         
-        plane.addChildNode(TowerNode())
+        let tower = TowerNode(gameViewController: self)
+        self.updatables.append(tower)
+        plane.addChildNode(tower)
         
         plane.addChildNode(Monster())
         
