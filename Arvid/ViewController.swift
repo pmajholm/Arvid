@@ -22,6 +22,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     let session = ARSession()
     let configuration: ARConfiguration = ARWorldTrackingConfiguration()
     
+    var updatables: [Updatable] = []
+    
+    var initGame = false
+    
+    var focusSquare: FocusSquare?
+    
+    // add monsters to this array so that towers can find them
+    var monsters: [CreepNode] = []
+
     let world = World()
     
     override func viewDidLoad() {
@@ -30,9 +39,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         // Set the view's delegate
         sceneView.delegate = self
         sceneView.session = session
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene()
@@ -85,6 +91,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
      return node
      }
      */
+  
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -124,17 +131,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: self.view)
-        let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-        
-        if let result = planeHitTestResults.first {
-            focusSquare?.hide()
-            world.isHidden = false
-            let transform = result.worldTransform
-            world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+          if !initGame {
+            let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
+            if let result = planeHitTestResults.first {
+                focusSquare?.hide()
+                world.isHidden = false
+                let transform = result.worldTransform
+                world.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+                initGame = true
+            }
+          } else {
+            var hitTestOptions = [SCNHitTestOption: Any]()
+            hitTestOptions[SCNHitTestOption.boundingBoxOnly] = true
+            
+            let results: [SCNHitTestResult] = sceneView.hitTest(point, options: hitTestOptions)
+            for result in results {
+                if let name = result.node.name, name.contains("selection") {
+                    print("select")
+                }
+            }
         }
     }
     
-    var focusSquare: FocusSquare?
+   
     var screenCenter: CGPoint?
     
     func setupFocusSquare() {
