@@ -36,6 +36,7 @@ class GameEngine{
         gold = 200
         points = 0
         startEngine()
+        self.delegate?.gameDidStart()
     }
     
     func startEngine(){
