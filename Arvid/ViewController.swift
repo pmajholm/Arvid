@@ -33,6 +33,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         scene.rootNode.addChildNode(plane)
         
         scene.rootNode.addChildNode(Tower())
+        
+        scene.rootNode.addChildNode(Monster())
     }
     
     override func viewWillAppear(_ animated: Bool) {
