@@ -55,7 +55,7 @@ class GameEngine{
         let cost = Tower.getCost(level: level)
         if cost <= self.gold{
             self.gold -= cost
-            return Tower2(level: level)
+            return Tower(level: level)
         }
         return nil
     }
