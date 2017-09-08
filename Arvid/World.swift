@@ -87,8 +87,9 @@ class World: SCNNode, GameEngineDelegate {
     func addTower(selectionName: String) {
         let tower = TowerNode(world: self)
         tower.position = getPositionFrom(name: selectionName)!
+//        tower.eulerAngles = SCNVector3(Double.pi/2, 0, 0)
         self.updatables.append(tower)
-        plane.addChildNode(tower)
+        addChildNode(tower)
     }
     
     func spawnCreep() {
@@ -96,7 +97,7 @@ class World: SCNNode, GameEngineDelegate {
         creepNode.position = SCNVector3(-planeWidth, Float(creepNode.radius()) / 2, 0) //TODO: set position
         creepNode.name = "something" //TODO: set name
         creeps.append(creepNode)
-        plane.addChildNode(creepNode)
+        addChildNode(creepNode)
     }
     
     //MARK: Game Engine Delegate

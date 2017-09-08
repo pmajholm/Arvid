@@ -147,7 +147,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
             let results: [SCNHitTestResult] = sceneView.hitTest(point, options: hitTestOptions)
             for result in results {
                 if let name = result.node.name, name.contains("selection") {
-                    print("select")
+                    world.addTower(selectionName: name)
                 }
             }
         }
