@@ -46,12 +46,12 @@ class Plane: SCNNode {
     }
     
     func addSelections() {
-        for i in 0...11 {
+        for i in 0...9 {
             var offsetX = Float(i) * 0.5
             var positionZ: Float = -(planeWidth/2) + (0.5/2)
             if i > 4  {
                 offsetX = Float(i - 5) * 0.5
-                positionZ = (planeWidth/2) - (0.5/2)
+                 positionZ = (planeWidth/2) - (0.5/2)
             }
 
             let positionX = planeLength/2 - (offsetX) - 0.5

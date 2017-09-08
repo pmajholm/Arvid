@@ -23,6 +23,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     var updatables: [Updatable] = []
     
+    var initGame = false
+    
+    var focusSquare: FocusSquare?
+    
     // add monsters to this array so that towers can find them
     var monsters: [Monster] = []
     
@@ -97,6 +101,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
      return node
      }
      */
+  
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -128,17 +133,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: self.view)
-        let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-        
-        if let result = planeHitTestResults.first {
-            focusSquare?.hide()
-            plane.isHidden = false
-            let transform = result.worldTransform
-            plane.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+          if !initGame {
+            let planeHitTestResults = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
+            if let result = planeHitTestResults.first {
+                focusSquare?.hide()
+                plane.isHidden = false
+                let transform = result.worldTransform
+                plane.position = SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+                initGame = true
+            }
+          } else {
+            var hitTestOptions = [SCNHitTestOption: Any]()
+            hitTestOptions[SCNHitTestOption.boundingBoxOnly] = true
+            
+            let results: [SCNHitTestResult] = sceneView.hitTest(point, options: hitTestOptions)
+            for result in results {
+                if let name = result.node.name, name.contains("selection") {
+                    print("select")
+                }
+            }
+            
         }
     }
     
-    var focusSquare: FocusSquare?
+   
     var screenCenter: CGPoint?
     
     func setupFocusSquare() {
