@@ -9,26 +9,30 @@
 import Foundation
 
 protocol GameEngineDelegate{
-    func gameDidStart()
     func sendCreep(creep: Creep)
-    func gameEngineDidPause()
+}
+
+protocol GameEnginePointsDelegate{
     func goldValueUpdated(gold: Int)
     func pointsValueUpdated(points: Int)
+    func gameDidStart()
+    func gameEngineDidPause()
 }
 
 class GameEngine{
     var creepTimer: Timer?
     var points = 0{
         didSet{
-            self.delegate?.pointsValueUpdated(points: points)
+            self.pointsDelegate?.pointsValueUpdated(points: points)
         }
     }
     var gold = 0{
         didSet{
-            self.delegate?.goldValueUpdated(gold: gold)
+            self.pointsDelegate?.goldValueUpdated(gold: gold)
         }
     }
     var delegate: GameEngineDelegate?
+    var pointsDelegate: GameEnginePointsDelegate?
     
     static let sharedInstance = GameEngine()
     
@@ -36,7 +40,7 @@ class GameEngine{
         gold = 200
         points = 0
         startEngine()
-        self.delegate?.gameDidStart()
+        self.pointsDelegate?.gameDidStart()
     }
     
     func startEngine(){
@@ -49,7 +53,7 @@ class GameEngine{
         if let c = creepTimer{
             c.invalidate()
         }
-        self.delegate?.gameEngineDidPause()
+        self.pointsDelegate?.gameEngineDidPause()
     }
     
     func buyTower(level: Int) -> Tower?{

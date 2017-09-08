@@ -27,6 +27,18 @@
                                     <outletCollection property="gestureRecognizers" destination="Srd-sP-iro" appends="YES" id="z5B-lG-ptl"/>
                                 </connections>
                             </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 gold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikZ-Rx-dbR">
+                                <rect key="frame" x="187" y="333" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.72304687499999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNj-yy-yx8">
+                                <rect key="frame" x="187" y="333" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.34962559172207608" green="0.72129333065198553" blue="0.96789300441741943" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ez-Gy-HXF">
                                 <rect key="frame" x="170" y="617" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
@@ -37,15 +49,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ikZ-Rx-dbR" firstAttribute="leading" secondItem="5K8-aK-UdY" secondAttribute="leading" constant="16" id="0av-xu-Sal"/>
                             <constraint firstItem="9Ez-Gy-HXF" firstAttribute="centerX" secondItem="5K8-aK-UdY" secondAttribute="centerX" id="G0I-6z-Tt0"/>
                             <constraint firstItem="w2K-vU-cX5" firstAttribute="top" secondItem="9Ez-Gy-HXF" secondAttribute="bottom" constant="20" id="YXe-vT-HPe"/>
+                            <constraint firstItem="iNj-yy-yx8" firstAttribute="top" secondItem="bNB-R5-eZz" secondAttribute="bottom" constant="16" id="bH4-3m-O38"/>
                             <constraint firstItem="rdK-22-UbQ" firstAttribute="leading" secondItem="5K8-aK-UdY" secondAttribute="leading" id="e23-lA-CtD"/>
                             <constraint firstAttribute="bottom" secondItem="rdK-22-UbQ" secondAttribute="bottom" id="eoM-Ne-kto"/>
                             <constraint firstItem="rdK-22-UbQ" firstAttribute="top" secondItem="5K8-aK-UdY" secondAttribute="top" id="gaN-ae-6XR"/>
+                            <constraint firstItem="ikZ-Rx-dbR" firstAttribute="top" secondItem="bNB-R5-eZz" secondAttribute="bottom" constant="16" id="gfb-hI-aSP"/>
+                            <constraint firstAttribute="trailing" secondItem="iNj-yy-yx8" secondAttribute="trailing" constant="16" id="pUE-kM-DoA"/>
                             <constraint firstAttribute="trailing" secondItem="rdK-22-UbQ" secondAttribute="trailing" id="reM-Tv-5ZH"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="goldLabel" destination="ikZ-Rx-dbR" id="SW5-md-Bi8"/>
+                        <outlet property="pointsLabel" destination="iNj-yy-yx8" id="M7F-er-sxT"/>
                         <outlet property="sceneView" destination="rdK-22-UbQ" id="EKI-JK-UTH"/>
                     </connections>
                 </viewController>
