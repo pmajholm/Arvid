@@ -9,11 +9,12 @@
 import Foundation
 import ARKit
 
-class CreepNode: SCNNode, Updatable {
- 
-    override init() {
+class CreepNode: SCNNode, Updatable, CreepDelegate {
+    var creep: Creep!
+    init(creep: Creep) {
         super.init()
-        
+        self.creep = creep
+        self.creep.delegate = self
         let sphereGeometry = SCNSphere(radius: radius())
         let sphere = SCNNode(geometry: sphereGeometry)
         let collission = SCNPhysicsBody(type: .dynamic, shape: nil)
@@ -38,5 +39,9 @@ class CreepNode: SCNNode, Updatable {
     
     func update(time: TimeInterval) {
         self.position = SCNVector3(self.position.x + 0.01, self.position.y, self.position.z)
+    }
+    
+    func creepDied() {
+        self.removeFromParentNode()
     }
 }
