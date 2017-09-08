@@ -100,19 +100,15 @@
 			isa = PBXGroup;
 			children = (
 				1AB798091F62B35B00D21E3E /* Updatable.swift */,
-				F92681B61F629D80005AB3DA /* CreepNode.swift */,
 				1A6402161F62868000FEE3E0 /* AppDelegate.swift */,
 				1A6402181F62868000FEE3E0 /* art.scnassets */,
 				1A64021A1F62868000FEE3E0 /* ViewController.swift */,
 				1A64021C1F62868000FEE3E0 /* Main.storyboard */,
-				F92681B41F629C7C005AB3DA /* TowerNode.swift */,
 				1A64021F1F62868000FEE3E0 /* Assets.xcassets */,
 				1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */,
 				1A6402241F62868000FEE3E0 /* Info.plist */,
-				F92681B21F62963E005AB3DA /* FocusSquare.swift */,
-				1A6402381F62888D00FEE3E0 /* World.swift */,
 				1A64023A1F628BED00FEE3E0 /* Utilities.swift */,
-				1AB7980D1F62B9F800D21E3E /* SeekingEnergyBall.swift */,
+				F7A4A23E1F62D6DE002A7599 /* Nodes */,
 				F71A59D01F62BD4C00BD44B7 /* Game Mechanics */,
 			);
 			path = Arvid;
@@ -135,6 +131,18 @@
 				F7A4A23B1F62C736002A7599 /* Tower.swift */,
 			);
 			name = "Game Mechanics";
+			sourceTree = "<group>";
+		};
+		F7A4A23E1F62D6DE002A7599 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				1A6402381F62888D00FEE3E0 /* World.swift */,
+				F92681B21F62963E005AB3DA /* FocusSquare.swift */,
+				F92681B41F629C7C005AB3DA /* TowerNode.swift */,
+				F92681B61F629D80005AB3DA /* CreepNode.swift */,
+				1AB7980D1F62B9F800D21E3E /* SeekingEnergyBall.swift */,
+			);
+			name = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -13,7 +13,6 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDelegate {
     @IBOutlet weak var goldLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-    @IBOutlet weak var startButton: UIButton!
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -22,15 +21,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     let session = ARSession()
     let configuration: ARConfiguration = ARWorldTrackingConfiguration()
     
-    var updatables: [Updatable] = []
-    
-    var initGame = false
-    
-    var focusSquare: FocusSquare?
-    
-    // add monsters to this array so that towers can find them
-    var monsters: [CreepNode] = []
-
     let world = World()
     
     override func viewDidLoad() {
@@ -39,6 +29,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         // Set the view's delegate
         sceneView.delegate = self
         sceneView.session = session
+        
+        // Show statistics such as fps and timing information
+        sceneView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene()
@@ -55,7 +48,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         }
         
         scene.rootNode.addChildNode(world)
-        GameEngine.sharedInstance.pointsDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +83,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
      return node
      }
      */
-  
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -122,7 +113,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
             GameEngine.sharedInstance.pauseEngine()
         }else{
             if GameEngine.sharedInstance.hasStartedFirstGame{
-                GameEngine.sharedInstance.startEngine()
+                GameEngine.sharedInstance.resumeEngine()
             }else{
                 GameEngine.sharedInstance.startGame()
             }
@@ -153,7 +144,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
         }
     }
     
-   
+    var focusSquare: FocusSquare?
     var screenCenter: CGPoint?
     
     func setupFocusSquare() {
@@ -256,11 +247,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     
     func gameDidStart() {
         //Change start button to stop button?
-        self.startButton.setTitle("Stop", for: .normal)
     }
     
     func gameEngineDidPause() {
         //Change stop button to start button?
-        self.startButton.setTitle("Start", for: .normal)
     }
 }
