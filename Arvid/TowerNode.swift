@@ -10,14 +10,14 @@ import Foundation
 import SceneKit
 
 class TowerNode : SCNNode, Updatable {
-    
+    var tower: Tower!
     let world: World
     let muzzle: SCNNode
     var i = 0
 
-    init(world: World) {
+    init(world: World, tower: Tower) {
         self.world = world
-        
+        self.tower = tower
         self.muzzle = SCNNode()
         muzzle.position = SCNVector3Make(0, 0.5, 0)
         
