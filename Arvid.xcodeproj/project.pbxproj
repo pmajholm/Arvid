@@ -17,6 +17,7 @@
 		1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6402381F62888D00FEE3E0 /* Plane.swift */; };
 		1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64023A1F628BED00FEE3E0 /* Utilities.swift */; };
 		F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B21F62963E005AB3DA /* FocusSquare.swift */; };
+		F92681B51F629C7C005AB3DA /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92681B41F629C7C005AB3DA /* Tower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		1A6402381F62888D00FEE3E0 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		1A64023A1F628BED00FEE3E0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		F92681B21F62963E005AB3DA /* FocusSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
+		F92681B41F629C7C005AB3DA /* Tower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				1A6402181F62868000FEE3E0 /* art.scnassets */,
 				1A64021A1F62868000FEE3E0 /* ViewController.swift */,
 				1A64021C1F62868000FEE3E0 /* Main.storyboard */,
+				F92681B41F629C7C005AB3DA /* Tower.swift */,
 				1A64021F1F62868000FEE3E0 /* Assets.xcassets */,
 				1A6402211F62868000FEE3E0 /* LaunchScreen.storyboard */,
 				1A6402241F62868000FEE3E0 /* Info.plist */,
@@ -213,6 +216,7 @@
 				F92681B31F62963E005AB3DA /* FocusSquare.swift in Sources */,
 				1A64021B1F62868000FEE3E0 /* ViewController.swift in Sources */,
 				1A6402391F62888D00FEE3E0 /* Plane.swift in Sources */,
+				F92681B51F629C7C005AB3DA /* Tower.swift in Sources */,
 				1A64023B1F628BED00FEE3E0 /* Utilities.swift in Sources */,
 				1A6402171F62868000FEE3E0 /* AppDelegate.swift in Sources */,
 			);
