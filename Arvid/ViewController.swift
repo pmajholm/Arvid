@@ -48,17 +48,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
             self.screenCenter = self.sceneView.bounds.mid
         }
         
-        let tower = TowerNode(gameViewController: self)
-        self.updatables.append(tower)
-        plane.addChildNode(tower)
-        
-        plane.addChildNode(CreepNode())
-        
-        let monster = CreepNode()
-        self.monsters.append(monster)
-        scene.rootNode.addChildNode(monster)
-        monster.position = SCNVector3Make(2.5, 0, 2.5)
-        
+        scene.rootNode.addChildNode(world)
         GameEngine.sharedInstance.pointsDelegate = self
     }
     
@@ -121,6 +111,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, GameEnginePointsDeleg
     }
     
     @IBAction func startPressed(_ sender: Any) {
+        world.spawnCreep()
         if GameEngine.sharedInstance.isPlaying{
             GameEngine.sharedInstance.pauseEngine()
         }else{
