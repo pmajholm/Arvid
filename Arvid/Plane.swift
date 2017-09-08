@@ -81,4 +81,12 @@ class Plane: SCNNode {
 //        let tower = Tower()
 //        tower.position =
     }
+    
+    func spawnCreep() {
+        let creepNode = CreepNode()
+        creepNode.position = SCNVector3(-planeWidth, self.position.y, self.position.z) //TODO: set position
+        creepNode.name = "something" //TODO: set name
+        plane.addChildNode(creepNode)
+    }
+
 }
